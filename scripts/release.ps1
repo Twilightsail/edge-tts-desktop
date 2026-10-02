@@ -103,12 +103,14 @@ Step "9/9 汇总发布物" {
     if (-not $installer) { throw "找不到版本 $version 的安装包" }
     $out = Join-Path $root "release\v$version"
     New-Item -ItemType Directory -Force $out | Out-Null
-    Copy-Item $installer.FullName $out -Force
-    Copy-Item frontend\public\third-party-notices.txt (Join-Path $out "第三方许可声明.txt") -Force
+    # GitHub 会改写附件里的空格和中文字符（例如把中文名变成 default.txt），所以发布物统一用纯 ASCII 文件名
+    $assetName = "Edge-TTS_${version}_x64-setup.exe"
+    Copy-Item $installer.FullName (Join-Path $out $assetName) -Force
+    Copy-Item frontend\public\third-party-notices.txt (Join-Path $out "THIRD-PARTY-NOTICES.txt") -Force
     Copy-Item docs\用户指南.md $out -Force
-    $hash = (Get-FileHash (Join-Path $out $installer.Name) -Algorithm SHA256).Hash.ToLower()
-    "$hash  $($installer.Name)" | Set-Content (Join-Path $out "SHA256SUMS.txt") -Encoding UTF8
-    $signature = Get-AuthenticodeSignature (Join-Path $out $installer.Name)
+    $hash = (Get-FileHash (Join-Path $out $assetName) -Algorithm SHA256).Hash.ToLower()
+    "$hash  $assetName" | Set-Content (Join-Path $out "SHA256SUMS.txt") -Encoding UTF8
+    $signature = Get-AuthenticodeSignature (Join-Path $out $assetName)
     Write-Host ("安装包：{0}（{1:N1} MB）" -f $installer.Name, ($installer.Length / 1MB))
     Write-Host "SHA256：$hash"
     Write-Host "签名状态：$($signature.Status)$(if ($signature.SignerCertificate) { '，签发给 ' + $signature.SignerCertificate.Subject })"

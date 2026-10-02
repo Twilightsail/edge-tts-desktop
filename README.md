@@ -6,7 +6,7 @@
 
 ## 下载
 
-到 **[Releases](https://github.com/Twilightsail/edge-tts-desktop/releases/latest)** 下载 `Edge TTS_x.y.z_x64-setup.exe`，双击安装（Windows 10/11 64 位，不需要管理员权限）。
+到 **[Releases](https://github.com/Twilightsail/edge-tts-desktop/releases/latest)** 下载 `Edge-TTS_x.y.z_x64-setup.exe`，双击安装（Windows 10/11 64 位，不需要管理员权限）。
 
 > 安装包**没有代码签名**，Windows 会弹出蓝色的“Windows 已保护你的电脑”，点 **“更多信息” → “仍要运行”** 即可。可对照 Release 里的 `SHA256SUMS.txt` 校验文件。
 
