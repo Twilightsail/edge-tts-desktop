@@ -1,0 +1,37 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "edge-tts-desktop-backend"
+version = "0.2.0"
+description = "Local backend for Edge TTS Desktop"
+requires-python = ">=3.12"
+dependencies = [
+  "edge-tts>=7.2,<8",
+  "fastapi>=0.115,<1",
+  "uvicorn>=0.34,<1",
+  "aiofiles>=24,<26",
+  "imageio-ffmpeg>=0.6,<1",
+  "python-multipart>=0.0.20,<1",
+  "defusedxml>=0.7,<1",
+]
+
+[project.optional-dependencies]
+dev = ["mutagen>=1.47,<2", "pytest>=8,<10", "httpx>=0.28,<1", "ruff>=0.11,<1", "pyinstaller>=6,<7"]
+
+[project.scripts]
+edge-tts-backend = "edge_tts_backend.__main__:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/edge_tts_backend"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.ruff]
+target-version = "py312"
+line-length = 100
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "ASYNC"]

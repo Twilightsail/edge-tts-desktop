@@ -1,0 +1,16 @@
+/* ---- 引擎切换与 Azure 配置 ---- */
+.engine-row { padding: 0 12px 8px; }
+.seg-ctl.stretch { display: flex; width: 100%; }
+.seg-ctl.stretch button { flex: 1; }
+.side-empty.setup { color: var(--text); }
+.side-empty.setup svg { color: var(--accent); }
+.side-empty.setup .primary { padding: 8px 22px; }
+.engine-tag { font-style: normal; font-size: 11px; font-weight: 600; color: var(--accent); background: var(--accent-soft); border-radius: 8px; padding: 0 6px; margin-left: 6px; }
+.azure-box { display: flex; flex-direction: column; gap: 9px; background: var(--hover); border-radius: 12px; padding: 12px; }
+.azure-head { display: flex; justify-content: space-between; align-items: center; }
+.azure-box label { display: flex; flex-direction: column; gap: 5px; font-size: 12.5px; color: var(--muted); }
+.azure-box input { background: var(--side); }
+.tag { font-size: 12px; padding: 1px 9px; border-radius: 10px; background: var(--bad-soft); color: var(--bad); }
+.tag.ok { background: color-mix(in srgb, #34c759 18%, transparent); color: #2fb350; }
+.ok-text { color: #2fb350; font-size: 13px; }
+.error-text { font-size: 13px; line-height: 1.45; }

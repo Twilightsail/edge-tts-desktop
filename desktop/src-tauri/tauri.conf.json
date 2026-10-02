@@ -1,0 +1,55 @@
+{
+  "$schema": "https://schema.tauri.app/config/2",
+  "productName": "Edge TTS",
+  "version": "0.2.0",
+  "identifier": "com.edgettsdesktop.app",
+  "build": {
+    "beforeDevCommand": "npm --prefix ../frontend run dev",
+    "devUrl": "http://127.0.0.1:5173",
+    "beforeBuildCommand": "npm --prefix ../frontend run build",
+    "frontendDist": "../../frontend/dist"
+  },
+  "app": {
+    "windows": [
+      {
+        "title": "Edge TTS 语音合成",
+        "width": 1100,
+        "height": 760,
+        "minWidth": 720,
+        "minHeight": 560
+      }
+    ],
+    "security": {
+      "csp": "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; media-src 'self' blob:; font-src 'self' data:; connect-src 'self' http://127.0.0.1:* ipc: http://ipc.localhost; object-src 'none'; base-uri 'none'; frame-ancestors 'none'",
+      "devCsp": null
+    }
+  },
+  "bundle": {
+    "active": true,
+    "targets": [
+      "nsis"
+    ],
+    "icon": [
+      "icons/icon.ico"
+    ],
+    "externalBin": [
+      "binaries/edge-tts-backend"
+    ],
+    "publisher": "Edge TTS",
+    "copyright": "© Edge TTS 作者。第三方组件的版权与许可见应用内“开源许可”。",
+    "shortDescription": "Windows 桌面语音合成工具，支持 Edge 在线语音与 Azure",
+    "longDescription": "把文本转成语音：支持长文本、章节与多角色、字幕导出（SRT/VTT）、批量导出 ZIP，可选 Edge 免费在线语音或自备密钥的 Azure AI Speech。",
+    "windows": {
+      "webviewInstallMode": {
+        "type": "downloadBootstrapper"
+      },
+      "nsis": {
+        "languages": [
+          "SimpChinese"
+        ],
+        "displayLanguageSelector": false,
+        "installMode": "currentUser"
+      }
+    }
+  }
+}

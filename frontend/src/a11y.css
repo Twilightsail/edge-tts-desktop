@@ -1,0 +1,16 @@
+/* ---- 键盘可用性与小面板样式 ---- */
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 6px; }
+input:focus-visible, textarea:focus-visible, select:focus-visible { outline: none; }
+.voice-scroll:focus-visible { outline: none; box-shadow: inset 0 0 0 2px var(--accent-soft); }
+.panel select { width: 100%; }
+.about { display: flex; flex-direction: column; gap: 8px; }
+.about .path { word-break: break-all; user-select: text; }
+
+/* 侧栏变窄时，搜索框要能缩小，否则会把右侧的折叠按钮挤出侧栏被裁掉 */
+.side-top { min-width: 0; }
+.search-box { min-width: 0; }
+.search-box input { width: 100%; min-width: 0; }
+.side-top > .round { flex: none; }
+
+.notices-modal { width: min(860px, 94vw); }
+.notices { margin: 0; font: 12px/1.55 "Cascadia Mono", Consolas, "Microsoft YaHei UI", monospace; white-space: pre-wrap; word-break: break-word; user-select: text; color: var(--text); }

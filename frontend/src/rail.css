@@ -1,0 +1,51 @@
+/* ---- 折叠后的窄栏：头像 + 名字，分组，带操作入口 ---- */
+.shell.collapsed { --sw: 84px; }
+.side-rail { width: 84px; padding: 0; gap: 0; align-items: stretch; overflow: hidden; }
+.rail-top { display: flex; flex-direction: column; align-items: center; gap: 6px; padding: 9px 0 10px; border-bottom: 1px solid var(--line); }
+.rail-engine { font-size: 11px; font-weight: 600; padding: 3px 10px; border-radius: 10px; background: var(--accent-soft); color: var(--accent); }
+.rail-engine:hover { background: color-mix(in srgb, var(--accent) 24%, transparent); }
+.rail-engine.azure { background: color-mix(in srgb, #0a84ff 16%, transparent); color: #0a84ff; }
+:root[data-theme="dark"] .rail-engine.azure { color: #64b5ff; }
+
+.rail-scroll { flex: 1; min-height: 0; overflow-y: auto; scrollbar-width: none; display: flex; flex-direction: column; align-items: center; gap: 2px; padding: 6px 0 10px;
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 10px, #000 calc(100% - 14px), transparent 100%); mask-image: linear-gradient(to bottom, transparent 0, #000 10px, #000 calc(100% - 14px), transparent 100%); }
+.rail-scroll::-webkit-scrollbar { display: none; }
+.rail-label { display: flex; align-items: center; gap: 3px; font-size: 10.5px; font-weight: 600; letter-spacing: .4px; color: var(--muted); margin: 10px 0 3px; }
+.rail-label svg { color: #f5b301; }
+.rail-scroll > .rail-label:first-child { margin-top: 2px; }
+
+.rail-item { width: 74px; display: flex; flex-direction: column; align-items: center; gap: 4px; padding: 6px 3px 5px; border-radius: 14px; cursor: pointer; outline-offset: -2px;
+  transition: background .2s var(--apple), transform .35s var(--spring); }
+.rail-item:hover { background: var(--hover); }
+.rail-item:active { transform: scale(.95); }
+.rail-item.sel { background: var(--accent-soft); }
+.rail-avatar { position: relative; display: grid; place-items: center; border-radius: 50%; transition: box-shadow .25s; }
+.rail-item.sel .rail-avatar { box-shadow: 0 0 0 2px var(--side), 0 0 0 4px var(--accent); }
+.rail-name { max-width: 100%; font-size: 11.5px; line-height: 1.2; text-align: center; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; color: var(--text); }
+.rail-item.sel .rail-name { color: var(--accent); font-weight: 600; }
+.rail-sub { font-size: 10px; color: var(--muted); margin-top: -2px; }
+.rail-item.big { padding-top: 8px; }
+.fav-dot { position: absolute; right: -3px; top: -3px; z-index: 2; width: 16px; height: 16px; border-radius: 50%; display: grid; place-items: center; background: #f5b301; color: #fff; border: 2px solid var(--side); }
+
+/* 悬停头像：出现试听按钮 */
+.rail-play { position: absolute; inset: 0; margin: auto; width: 26px; height: 26px; border-radius: 50%; display: grid; place-items: center; color: #fff;
+  background: rgba(0, 0, 0, .55); backdrop-filter: blur(6px); opacity: 0; transform: scale(.6); transition: opacity .2s, transform .35s var(--spring); }
+.rail-play svg, .rail-play .spinner { margin-left: 1px; }
+.rail-item:hover .rail-play, .rail-item:focus-visible .rail-play { opacity: 1; transform: none; }
+.rail-play:hover { background: rgba(0, 0, 0, .75); }
+
+.rail-loading { margin-top: 14px; display: flex; flex-direction: column; align-items: center; gap: 6px; font-size: 11px; color: var(--muted); }
+.rail-bottom { display: flex; flex-direction: column; align-items: center; gap: 2px; padding: 6px 0 10px; border-top: 1px solid var(--line); }
+.rail-bottom .round { color: var(--muted); } .rail-bottom .round:hover { color: var(--accent); }
+
+.shell.collapsed .rail-item { animation: popIn .5s var(--spring) both; animation-delay: calc(var(--i, 0) * 30ms + .12s); }
+
+/* 悬停详情卡片：跟随被悬停的项，浮在聊天区上方 */
+.rail-tip { position: fixed; z-index: 40; transform: translateY(-50%); max-width: 280px; display: flex; flex-direction: column; gap: 2px; padding: 8px 12px; border-radius: 10px; pointer-events: none;
+  color: #fff; background: rgba(30, 30, 32, .88); backdrop-filter: blur(18px) saturate(1.6); box-shadow: 0 6px 24px rgba(0, 0, 0, .3); font-size: 12px; animation: tipIn .18s var(--apple) both; }
+.rail-tip b { font-size: 13px; font-weight: 600; }
+.rail-tip span { color: rgba(255, 255, 255, .72); }
+@keyframes tipIn { from { opacity: 0; transform: translate(-6px, -50%) scale(.96); } }
+
+.rail-loading button { display: flex; flex-direction: column; align-items: center; gap: 4px; font-size: 11px; color: var(--accent); padding: 6px 4px; border-radius: 10px; }
+.rail-loading button:hover { background: var(--accent-soft); }

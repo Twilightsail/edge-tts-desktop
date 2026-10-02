@@ -1,0 +1,14 @@
+{
+  "name": "edge-tts-desktop-shell",
+  "private": true,
+  "version": "0.2.0",
+  "scripts": {
+    "tauri": "tauri",
+    "prepare-backend": "node scripts/prepare-backend.mjs",
+    "e2e": "node e2e/smoke.mjs",
+    "e2e:install": "node e2e/install-test.mjs"
+  },
+  "devDependencies": {
+    "@tauri-apps/cli": "^2.0.0"
+  }
+}
